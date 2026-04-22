@@ -355,6 +355,32 @@ class Tools:
 
         return ids
 
+    def _is_zip_like(self, filename: str = "", mime_type: str = "") -> bool:
+        name = (filename or "").strip().lower()
+        if name.endswith(".zip"):
+            return True
+        mt = (mime_type or "").strip().lower()
+        return mt in {
+            "application/zip",
+            "application/x-zip-compressed",
+            "application/x-zip",
+            "multipart/x-zip",
+        }
+
+    async def _detect_zip_upload_ids(self, upload_ids: list[str], __request__: Optional[Request]) -> list[str]:
+        zip_ids: list[str] = []
+        for fid in upload_ids:
+            result = await self._request("GET", f"/api/v1/files/{fid}", __request__)
+            if not result.get("ok"):
+                continue
+            data = result.get("data", {}) if isinstance(result.get("data"), dict) else {}
+            meta = data.get("meta", {}) if isinstance(data.get("meta"), dict) else {}
+            filename = str(meta.get("name") or data.get("filename") or "")
+            mime_type = str(meta.get("content_type") or "")
+            if self._is_zip_like(filename, mime_type):
+                zip_ids.append(fid)
+        return zip_ids
+
     async def _request(
         self,
         method: str,
@@ -468,6 +494,25 @@ class Tools:
             seen.add(item)
             final_upload_ids.append(item)
 
+        auto_selection_info: dict[str, Any] = {}
+        user_id = self._user_id(__user__)
+        if len(final_upload_ids) > 1:
+            try:
+                zip_ids = await self._detect_zip_upload_ids(final_upload_ids, __request__)
+                # Backend requires ZIP to be sent alone; when multiple uploads include ZIP(s),
+                # auto-select latest ZIP and drop the rest to avoid 400 blocking.
+                if zip_ids:
+                    selected_zip_id = zip_ids[-1]
+                    dropped = [fid for fid in final_upload_ids if fid != selected_zip_id]
+                    final_upload_ids = [selected_zip_id]
+                    auto_selection_info = {
+                        "auto_selected_zip_upload_id": selected_zip_id,
+                        "dropped_upload_ids": dropped,
+                        "warning": "Detected multiple uploads with ZIP; ZIP must be sent alone, so only the latest ZIP was used.",
+                    }
+            except Exception:
+                pass
+
         if not final_upload_ids:
             return json.dumps(
                 {
@@ -488,7 +533,6 @@ class Tools:
         if (package_display_name or "").strip():
             body["package_display_name"] = package_display_name.strip()
 
-        user_id = self._user_id(__user__)
         if self.valves.PREFER_LOCAL_BACKEND and user_id:
             try:
                 from open_webui.routers import material_packages as mp
@@ -516,6 +560,7 @@ class Tools:
                         "asset_count": len(obj.get("assets", []) or []),
                         "references": refs,
                         "data": obj,
+                        **auto_selection_info,
                     },
                     ensure_ascii=False,
                 )
@@ -543,6 +588,7 @@ class Tools:
                 "asset_count": len(data.get("assets", []) or []),
                 "references": refs,
                 "data": data,
+                **auto_selection_info,
             },
             ensure_ascii=False,
         )
