@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+
+# Virtual env
+.venv/
+
+# OpenWebUI runtime/state
+.webui_secret_key
+open-webui.db
+backend/data/
+cache/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+config/ark.env
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
