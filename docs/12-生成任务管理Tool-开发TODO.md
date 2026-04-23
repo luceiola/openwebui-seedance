@@ -54,8 +54,8 @@
 
 ## P5 文档更新
 
-- [x] 更新 [07-素材包Tool-接入与联调.md](/Users/lucas/Documents/openWebui/docs/07-素材包Tool-接入与联调.md)：新增任务查询调用示例。
-- [x] 更新 [08-运行命令手册.md](/Users/lucas/Documents/openWebui/docs/08-运行命令手册.md)：新增“提交后查询/等待”命令。
+- [x] 更新 [07-素材包Tool-接入与联调.md](/Users/lucas/Documents/openwebui-seedance/docs/07-素材包Tool-接入与联调.md)：新增任务查询调用示例。
+- [x] 更新 [08-运行命令手册.md](/Users/lucas/Documents/openwebui-seedance/docs/08-运行命令手册.md)：新增“提交后查询/等待”命令。
 
 ## P6 验证用例
 

@@ -5,7 +5,7 @@
 ```bash
 git init
 git add .
-git commit -m "chore: bootstrap openwebui workspace"
+git commit -m "chore: bootstrap openwebui-seedance workspace"
 ```
 
 ## 2. 分支策略（轻量）

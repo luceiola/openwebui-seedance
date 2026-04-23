@@ -1,4 +1,4 @@
-# OpenWebUI + Seedance 开发工作区
+# openwebui-seedance 开发工作区
 
 这个目录已经准备好用于：
 - 本地运行 OpenWebUI

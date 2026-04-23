@@ -62,8 +62,8 @@
 
 ## P6 文档与命令
 
-- [x] 更新 [07-素材包Tool-接入与联调.md](/Users/lucas/Documents/openWebui/docs/07-素材包Tool-接入与联调.md)（新增聊天上传入包流程）。
-- [x] 更新 [08-运行命令手册.md](/Users/lucas/Documents/openWebui/docs/08-运行命令手册.md)（新增 from-upload 与 assets 查询示例）。
+- [x] 更新 [07-素材包Tool-接入与联调.md](/Users/lucas/Documents/openwebui-seedance/docs/07-素材包Tool-接入与联调.md)（新增聊天上传入包流程）。
+- [x] 更新 [08-运行命令手册.md](/Users/lucas/Documents/openwebui-seedance/docs/08-运行命令手册.md)（新增 from-upload 与 assets 查询示例）。
 
 ## P7 测试与验收
 

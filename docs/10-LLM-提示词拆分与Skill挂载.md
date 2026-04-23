@@ -9,7 +9,7 @@
 ## 1) 视频描述（用户层）
 
 文件：
-- `/Users/lucas/Documents/openWebui/templates/prompts/seedance_video_description_prompt.txt`
+- `/Users/lucas/Documents/openwebui-seedance/templates/prompts/seedance_video_description_prompt.txt`
 
 用途：
 - 仅描述镜头语言与广告意图。
@@ -18,7 +18,7 @@
 ## 2) 执行规范 Skill（流程层）
 
 文件：
-- `/Users/lucas/Documents/openWebui/templates/skills/seedance-execution-skill/SKILL.md`
+- `/Users/lucas/Documents/openwebui-seedance/templates/skills/seedance-execution-skill/SKILL.md`
 
 用途：
 - 约束工具调用顺序与失败处理。
@@ -27,7 +27,7 @@
 ## 3) 系统提示词（角色层）
 
 文件：
-- `/Users/lucas/Documents/openWebui/templates/prompts/seedance_system_prompt.txt`
+- `/Users/lucas/Documents/openwebui-seedance/templates/prompts/seedance_system_prompt.txt`
 
 用途：
 - 定义模型身份与职责边界。

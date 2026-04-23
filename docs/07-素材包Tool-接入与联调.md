@@ -31,7 +31,7 @@ open-webui serve --host 127.0.0.1 --port 8080
 
 在 OpenWebUI 后台导入以下文件：
 
-- [seedance_material_package_tool_v2.import.json](/Users/lucas/Documents/openWebui/templates/seedance_material_package_tool_v2.import.json)
+- [seedance_material_package_tool_v2.import.json](/Users/lucas/Documents/openwebui-seedance/templates/seedance_material_package_tool_v2.import.json)
 
 注意：
 - 仅维护一个导入文件：`seedance_material_package_tool_v2.import.json`。
